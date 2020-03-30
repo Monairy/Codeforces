@@ -72,7 +72,7 @@ int height(Node*  root)
 	}
 	
 	int left_height = height(root->left);	
-    int right_height = height(root->right);
+        int right_height = height(root->right);
 
 		if (left_height >= right_height)
 		{
@@ -85,19 +85,29 @@ int height(Node*  root)
 }
 
 
-bool checkbalance(Node *root) {
+bool checkbalance(Node *root)
+{
 
-	int LeftSubTreeHeight;
-	int RightSubTreeHeight;
-
-	if (root == NULL) {
-		return 1;	}
-	LeftSubTreeHeight = height(root->left);
-	RightSubTreeHeight = height(root->right);
-	if (abs(LeftSubTreeHeight - RightSubTreeHeight) <= 1 && checkbalance(root->left) && checkbalance(root->right)) {
-		return 1;
+	if (root == NULL) 
+	{
+	     return 1;
 	}
+	int LeftSubTreeHeight = height(root->left);
+	int RightSubTreeHeight = height(root->right);
+	
+	if ((abs(LeftSubTreeHeight - RightSubTreeHeight) <= 1))
+	{ 
+		if (checkbalance(root->left))
+	   {
+		if(checkbalance(root->right))
+	              {return 1;}
+	    }
+	}
+	
+	else
+	{
 	return 0;
+	}
 }
 
 int main()
@@ -124,7 +134,6 @@ int main()
 	if (checkbalance(root) == 1) { cout << "YES"; }
 	else { cout << "NO"; }
 
-	//system("pause");
 	return 0;
 	}
 
